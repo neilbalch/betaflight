@@ -14,7 +14,7 @@ For an overview of the hardware Cleanflight (hereby CF) can run on, see [Boards.
 
 * Assuming that you have a flight controller board (hereby FC) in hand, you should first read through the manual that it came with. You can skip the details about software setup, as we'll cover that here.
 
-* Decide how you'll connect your receiver by reading the [receiver](Rx.md) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](Mixer.md). 
+* Decide how you'll connect your receiver by reading the [receiver](Rx.md) chapter, and how many pins you need on the outputs (to connect ESCs and servos) by reading about [Mixers](Mixer.md).
 
 * If you're interested in monitoring your flight battery with CF, see [Battery Monitoring](Battery.md).
 
@@ -32,9 +32,34 @@ For an overview of the hardware Cleanflight (hereby CF) can run on, see [Boards.
 
 ## Software setup
 
-Now that your board has pins on it, you are ready to connect it to your PC and flash it with CF. Install the Chromium browser or Google Chrome to your PC, if you don't have it already, add the [Cleanflight Configurator](https://chrome.google.com/webstore/detail/cleanflight-configurator/enacoimjcgeinfnnnpajinjgmkahmfgb) to it, and start it.
+### Using the configurator
+This is a generic procedure to flash a board using the configurator. The configurator does not yet support all boards, so please check the documentation corresponding to your board before proceeding.
 
-Then follow these instructions for [Installation](Installation.md) of the firmware to the FC.
+Make sure you have the [Cleanflight Configurator](https://github.com/cleanflight/cleanflight-configurator) installed, then:
+
+* Connect the flight controller to the PC.
+* Start the Cleanflight Configurator.
+* Click on "Disconnect" if the configurator connected to the board automatically.
+* Click on the "Firmware Flasher" tab.
+* Make sure you have internet connectivity and click on the "Load Firmware [Online]" button.
+* Click on the "Choose a Firmware / Board" dropdown menu, and select the latest stable version for your flight controller.
+* IMPORTANT: Read and understand the release notes that are displayed.  When upgrading review all release notes since your current firmware.
+* If this is the first time Cleanflight is flashed to the board, tick the "Full Chip Erase" checkbox.
+* Connect the flight controller board to the PC.  Ensure the correct serial port is selected.
+* Click on the "Flash Firmware" button and hold still (do not breathe, too).
+* When the progress bar becomes green and reads "Programming: SUCCESSFUL" you are done!
+
+#### Manual flashing
+
+See the board specific flashing instructions.
+
+### Upgrading
+
+When upgrading be sure to backup / dump your existing settings. Some firmware releases are not backwards compatible and default settings are restored when the FC detects an out of date configuration.
+
+### Backup/Restore process
+
+See the CLI section of the docs for details on how to backup and restore your configuration via the CLI.
 
 ## Cleanflight Configuration
 
@@ -49,7 +74,7 @@ Now, there are two ways to [configure CF](Configuration.md); via  the Configurat
 
 * On your PC, connect to the Configurator, and go to the first tab. Check that the board animation is moving properly when you move the actual board. Do an accelerometer calibration.
 
-* Configuration tab: Select your aircraft configuration (e.g. Quad X), and go through each option in the tab to check if relevant for you. 
+* Configuration tab: Select your aircraft configuration (e.g. Quad X), and go through each option in the tab to check if relevant for you.
 
   * E.g. you may want to enable ONESHOT125 for Oneshot-capable ESCs.
   * You may need RX_PPM if you're using an RC Receiver with PPM output etc.
@@ -64,11 +89,11 @@ Now, there are two ways to [configure CF](Configuration.md); via  the Configurat
     * Minimum Command - This is the "idle" signal level that will be sent to the ESCs when the craft is disarmed, which should not cause the motors to spin. A typical value would be 1000.
   * Finally, click Save and Reboot.
 
-* Receiver tab: 
-    * Check that the channel inputs move according to your Tx inputs. 
+* Receiver tab:
+    * Check that the channel inputs move according to your Tx inputs.
     * Check that the Channel map is correct along with the RSSI Channel, if you use that.
     * Verify the range of each channel goes from ~1000 to ~2000.  See also [controls](Controls.md). and `rx_min_usec` and `rx_max_usec`.
-    * You can also set EXPO here instead of your Tx. 
+    * You can also set EXPO here instead of your Tx.
     * Click Save!
 * Modes tab: Setup the desired modes. See the [modes](Modes.md) chapter for what each mode does, but for the beginning you mainly need HORIZON, if any.
 

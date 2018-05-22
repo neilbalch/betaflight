@@ -19,7 +19,6 @@ TRIGGER--/\/\--\
 ECHO-----/\/\--/
 ```
 
-
 ## Connections
 
 ### Naze/Flip32+
@@ -52,4 +51,3 @@ Sonar cannot be used in conjuction with SoftSerial or Parallel PWM.
 #### Constraints
 
 Sonar cannot be used in conjuction with SoftSerial2 or Parallel PWM.
-

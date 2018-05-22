@@ -33,7 +33,6 @@ For 2 and 3 use the CLI command as follows:
 set telemetry_inversion = ON
 ```
 
-
 ### Available sensors
 
 The following sensors are transmitted :
@@ -68,11 +67,11 @@ Tmp2 : number of sats. Every second, a number > 100 is sent to represent GPS sig
 
 Cels : average cell value, vbat divided by cell number.
 
-> Cleanflight will send Cels (FLVSS Individual Cell Voltages Telemetry), disable the setting to use actual FLVSS sensor with: 
+> Cleanflight will send Cels (FLVSS Individual Cell Voltages Telemetry), disable the setting to use actual FLVSS sensor with:
 > ```
 > set telemetry_send_cells = OFF
 > ```
-> 
+>
 > Note: cell voltage values are an assumed reputation of the cell voltage based on the packs voltage. Actual cell voltage may differ.
 >
 > To view individual cells or more importantly to get lowest cell (all cells are the sum of vbat, so each cell is the same in this case):
@@ -96,8 +95,6 @@ This is default setting which supports VFAS resolution of 0.2 volts and is suppo
 set frsky_vfas_precision  = 1
 ```
 This is new setting which supports VFAS resolution of 0.1 volts and is only supported by OpenTX radios (this method uses custom ID 0x39).
-
-
 
 ## HoTT telemetry
 
@@ -155,7 +152,7 @@ https://github.com/stronnag/mwptools/blob/master/docs/ltm-definition.txt
 
 ## MAVLink telemetry
 
-MAVLink is a very lightweight, header-only message marshalling library for micro air vehicles. 
+MAVLink is a very lightweight, header-only message marshalling library for micro air vehicles.
 Cleanflight supports MAVLink for compatibility with ground stations, OSDs and antenna trackers built
 for PX4, PIXHAWK, APM and Parrot AR.Drone platforms.
 
@@ -205,11 +202,11 @@ GPS : GPS coordinates.
 
 Cels : average cell value, vbat divided by cell number.
 
-> Cleanflight will send Cels (FLVSS Individual Cell Voltages Telemetry), disable the setting to use actual FLVSS sensor with: 
+> Cleanflight will send Cels (FLVSS Individual Cell Voltages Telemetry), disable the setting to use actual FLVSS sensor with:
 > ```
 > set telemetry_send_cells = OFF
 > ```
-> 
+>
 > Note: cell voltage values are an assumed reputation of the cell voltage based on the packs voltage. Actual cell voltage may differ. It is recommeded that you chain the flight controllers telemetry with a real Frsky FLVSS s.port sensor.
 >
 > To view individual cells or more importantly to get lowest cell (all cells are the sum of vbat, so each cell is the same in this case):
@@ -238,7 +235,7 @@ set telemetry_inversion = ON
 
 ### SmartPort on F1 and F3 targets with SoftSerial
 
-Since F1 targets like Naze32 or Flip32 are not equipped with hardware inverters, SoftSerial might be simpler to use. 
+Since F1 targets like Naze32 or Flip32 are not equipped with hardware inverters, SoftSerial might be simpler to use.
 
 1. Enable SoftSerial ```feature SOFTSERIAL```
 2. In Configurator assign _Telemetry_ > _Smartport_ > _Auto_ to SoftSerial port of your choice

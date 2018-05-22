@@ -4,7 +4,7 @@ With Cleanflight it's possible to make adjustments to various settings by using 
 
 ## Warning
 
-Changing settings during flight can make your aircraft unstable and crash if you are not careful.
+*Changing settings during flight can make your aircraft unstable and crash if you are not careful.*
 
 ## Recommendations
 
@@ -12,7 +12,7 @@ Changing settings during flight can make your aircraft unstable and crash if you
 * Make small adjustments and fly carefully to test your adjustment.
 * Give yourself enough flying space and time to adjust to how your changes affect the behaviour of the aircraft.
 * Remember to set adjustment channel switches/pots to the center position before powering on your TX and your aircraft.
-* If possible configure switch warnings on your transitter for dedicated adjustment switches. 
+* If possible configure switch warnings on your transitter for dedicated adjustment switches.
 * A momentary 3 position switch is the best choice of switch for this - i.e. one that re-centers itself when you let go of it.
 
 ## Overview
@@ -80,20 +80,18 @@ The CLI command `adjrange` is used to configure adjustment ranges.
 
 Show the current ranges using:
 
-`adjrange` 
+`adjrange`
 
 Configure a range using:
 
 `adjrange <index> <slot> <range channel> <range start> <range end> <adjustment function> <adjustment channel>`
 
-
-
 | Argument | Value | Meaning |
 | -------- | ----- |-------- |
 | Index | 0 - 11 | Select the adjustment range to configure |
 | Slot | 0 - 3 | Select the adjustment slot to use |
-| Range Channel | 0 based index, AUX1 = 0, AUX2 = 1 | The AUX channel to use to select an adjustment for a switch/pot | 
-| Range Start | 900 - 2100. Steps of 25, e.g. 900, 925, 950... | Start of range | 
+| Range Channel | 0 based index, AUX1 = 0, AUX2 = 1 | The AUX channel to use to select an adjustment for a switch/pot |
+| Range Start | 900 - 2100. Steps of 25, e.g. 900, 925, 950... | Start of range |
 | Range End | 900 - 2100 | End of range |
 | Adjustment function | 0 - 11 | See Adjustment function table |
 | Adjustment channel | 0 based index, AUX1 = 0, AUX2 = 1 | The channel that is controlled by a 3 Position switch/Pot |
@@ -106,7 +104,7 @@ Normally Range Channel and Slot values are grouped together over multiple adjust
 
 The Range Channel and the Adjustment Channel can be the same channel.  This is useful when you want a single 3 Position switch to be dedicated
 to a single adjustment function regardless of other switch positions.
- 
+
 The adjustment function is applied to the adjustment channel when range channel is between the range values.
 The adjustment is made when the adjustment channel is in the high or low position.  high = mid_rc + 200, low = mid_rc - 200.  by default this is 1700 and 1300 respectively.
 
@@ -151,7 +149,7 @@ explained:
 
 * configure adjrange 0 to use adjustment slot 1 (0) so that when aux4
 (3) in the range 900-2100 then use adjustment 4 (pitch/roll rate) when aux 4 (3)
-is in the appropriate position. 
+is in the appropriate position.
 * note that Center/Scale values are both zero, so this range will use increment/decrement mode.
 
 
@@ -248,11 +246,12 @@ adjrange 3 0 4 1950 2050 15 0 63 16
 adjrange 4 0 4 1950 2050 16 1 138 69
 adjrange 5 0 4 1950 2050 17 2 66 33
 ```
+
 explained:
 
 * note that Center value is non-zero, so this range will use absolute mode.
 
-This assigns pots aux 1, aux 2, and aux 3 respectively to control P, I and D settings with the pots at mid-position giving the default P/I/D values and providing a range of adjustment of +/- 50%. When the aux 5 switch is in one end position then roll P/I/D will be adjusted and when the aux 5 switch is in the other end position, pitch P/I/D will be adjusted. In the aux 5 switch middle position nether will be adjusted. Thus one could center the pots, select roll on aux 5 and then adjust the P/I/D values in flight. Then land, move the aux 5 switch to center, center the pots, select pitch on the switch and then again adjust P/I/D in flight. 
+This assigns pots aux 1, aux 2, and aux 3 respectively to control P, I and D settings with the pots at mid-position giving the default P/I/D values and providing a range of adjustment of +/- 50%. When the aux 5 switch is in one end position then roll P/I/D will be adjusted and when the aux 5 switch is in the other end position, pitch P/I/D will be adjusted. In the aux 5 switch middle position nether will be adjusted. Thus one could center the pots, select roll on aux 5 and then adjust the P/I/D values in flight. Then land, move the aux 5 switch to center, center the pots, select pitch on the switch and then again adjust P/I/D in flight.
 
 ### Configurator examples
 

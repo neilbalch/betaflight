@@ -7,7 +7,6 @@ It does this in two ways:
 1. Use a signal that varies between 125 µs and 250 µs (instead of the normal PWM timing of 1000µs to 2000µs)
 1. Only send a 'shot' once per flight controller loop, and do this as soon as the flight controller has calculated the required speed of the motors.
 
-
 ## Supported ESCs
 
 FlyDuino KISS ESCs are able to use the Oneshot125 protocol out of the box. There is only one soldering needed.
@@ -21,21 +20,17 @@ CC3D boards have been tested with a PPM receiver, however parallel PWM receivers
 
 ## Enabling Oneshot
 
-To configure Oneshot, you must turn off any power to your ESCs.  
+1. To configure Oneshot, you must turn off any power to your ESCs.
+2. It is a good idea at this stage to configure your ESC for oneshot mode (by soldering JP1 in the case of the KISS ESC).
+3. Connect a USB cable to your board, and connect using the Chrome GUI app.
+4. Go to the CLI tab, and type the following:
 
-It is a good idea at this stage to configure your ESC for oneshot mode (by soldering JP1 in the case of the KISS ESC).
+```
+  feature ONESHOT125
+  save
+```
 
-Connect a USB cable to your board, and connect using the Chrome GUI app.
-
-Go to the CLI tab, and type the following:
-
-
-	feature ONESHOT125
-	save
-
-
-Then you can safely power up your ESCs again.
-
+5. Then you can safely power up your ESCs again.
 
 ## Configuration
 
@@ -51,4 +46,4 @@ The process for calibrating oneshot ESCs is the same as any other ESC.
 
 ## References
 
-* FlyDuino (<a href="http://flyduino.net/">http://flyduino.net/</a>)
+* FlyDuino: [http://flyduino.net/](http://flyduino.net/)

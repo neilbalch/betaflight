@@ -2,9 +2,9 @@
 
 The algorithm has been originally developed by Mohammad Hefny (mohammad.hefny@gmail.com):
 
-> http://technicaladventure.blogspot.com/2014/06/zero-pids-tuner-for-multirotors.html
-> http://diydrones.com/profiles/blogs/zero-pid-tunes-for-multirotors-part-2
-> http://www.multiwii.com/forum/viewtopic.php?f=8&t=5190
+> [technicaladventure.blogspot.com/2014/06/zero-pids-tuner-for-multirotors.html](http://technicaladventure.blogspot.com/2014/06/zero-pids-tuner-for-multirotors.html)
+> [diydrones.com/profiles/blogs/zero-pid-tunes-for-multirotors-part-2](http://diydrones.com/profiles/blogs/zero-pid-tunes-for-multirotors-part-2)
+> [multiwii.com/forum/viewtopic.php?f=8&t=5190](http://www.multiwii.com/forum/viewtopic.php?f=8&t=5190)
 
 The G-Tune functionality for Cleanflight is ported from the Harakiri firmware.
 
@@ -38,29 +38,31 @@ A typical use may go in this order:
 3. Lift off slowly, avoid stick inputs (Roll, Pitch / Yaw).
 4. Eventually the copter should fly well. Perhaps do a few throttle punch outs and fly around a bit. Take note if each punch out seems to become smoother with less oscillation and the overall flight performance.
 5. Disable G-tune
-6. Land 
-7. Disarm, but don’t power off. 
-8. If these are desired results then either a) Connect cleanflight configurator review and save the configuration. or b) Enable G-Tune again to save settings. 
-9. Power off. 
+6. Land
+7. Disarm, but don’t power off.
+8. If these are desired results then either a) Connect cleanflight configurator review and save the configuration. or b) Enable G-Tune again to save settings.
+9. Power off.
 
 If the results are not desired look into changing the parameters as shown below and try again.
 
 Some other notes and instructions can be found here:
 
-> http://www.rcgroups.com/forums/showpost.php?p=31321635&postcount=6160
-> http://www.rcgroups.com/forums/showpost.php?p=31525114&postcount=7150
+> [rcgroups.com/forums/showpost.php?p=31321635&postcount=6160](http://www.rcgroups.com/forums/showpost.php?p=31321635&postcount=6160)
+> [rcgroups.com/forums/showpost.php?p=31525114&postcount=7150](http://www.rcgroups.com/forums/showpost.php?p=31525114&postcount=7150)
 
 ## Parameters and their function:
 
-    gtune_loP_rll        = 10  [0..200] Lower limit of ROLL P during G-Tune.  Note "10" means "1.0" in the GUI.
-    gtune_loP_ptch       = 10  [0..200] Lower limit of PITCH P during G-Tune. Note "10" means "1.0" in the GUI.
-    gtune_loP_yw         = 10  [0..200] Lower limit of YAW P during G-Tune.   Note "10" means "1.0" in the GUI.
-    gtune_hiP_rll        = 100 [0..200] Higher limit of ROLL P during G-Tune. 0 Disables tuning for that axis.  Note "100" means "10.0" in the GUI.
-    gtune_hiP_ptch       = 100 [0..200] Higher limit of PITCH P during G-Tune. 0 Disables tuning for that axis. Note "100" means "10.0" in the GUI.
-    gtune_hiP_yw         = 100 [0..200] Higher limit of YAW P during G-Tune. 0 Disables tuning for that axis.   Note "100" means "10.0" in the GUI.
-    gtune_pwr            = 0   [0..10] Strength of adjustment
-    gtune_settle_time    = 450 [200..1000] Settle time in ms
-    gtune_average_cycles = 16  [8..128] Number of looptime cycles used for gyro average calcullation
+```
+gtune_loP_rll        = 10  [0..200] Lower limit of ROLL P during G-Tune.  Note "10" means "1.0" in the GUI.
+gtune_loP_ptch       = 10  [0..200] Lower limit of PITCH P during G-Tune. Note "10" means "1.0" in the GUI.
+gtune_loP_yw         = 10  [0..200] Lower limit of YAW P during G-Tune.   Note "10" means "1.0" in the GUI.
+gtune_hiP_rll        = 100 [0..200] Higher limit of ROLL P during G-Tune. 0 Disables tuning for that axis.  Note "100" means "10.0" in the GUI.
+gtune_hiP_ptch       = 100 [0..200] Higher limit of PITCH P during G-Tune. 0 Disables tuning for that axis. Note "100" means "10.0" in the GUI.
+gtune_hiP_yw         = 100 [0..200] Higher limit of YAW P during G-Tune. 0 Disables tuning for that axis.   Note "100" means "10.0" in the GUI.
+gtune_pwr            = 0   [0..10] Strength of adjustment
+gtune_settle_time    = 450 [200..1000] Settle time in ms
+gtune_average_cycles = 16  [8..128] Number of looptime cycles used for gyro average calcullation
+```
 
 So you have lower and higher limits for each P for every axis. The preset range (GUI: 1.0 - 10.0) is quiet broad to represent most setups.
 

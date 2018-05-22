@@ -8,7 +8,7 @@ There are 3 basic types of receivers:
 2. PPM Receivers
 3. Serial Receivers
 
-As of 2016 the recommendation for new purchases is a Serial or PPM based receiver.  Avoid Parallel PWM recievers (1 wire per channel).  This is due to the amount of IO pins parallel PWM based receivers use.  Some new FC's do not support parallel PWM. 
+As of 2016 the recommendation for new purchases is a Serial or PPM based receiver.  Avoid Parallel PWM recievers (1 wire per channel).  This is due to the amount of IO pins parallel PWM based receivers use.  Some new FC's do not support parallel PWM.
 
 ## Parallel PWM Receivers
 
@@ -30,8 +30,6 @@ These receivers are reported working:
 * [FrSky X4R and FrSky X4RSB](http://www.frsky-rc.com/download/view.php?sort=&down=158&file=X4R-X4RSB) when flashed with CPPM firmware and bound with jumper between signal pins 2 and 3
 * All FrSky S.Bus enabled devices when connected with [S.Bus CPPM converter cable](http://www.frsky-rc.com/product/pro.php?pro_id=112). Without jumper this converter cable uses 21ms frame size (Channels 1-8). When jumper is in place, it uses 28ms frame and channels 1-12 are available
 * FlySky/Turnigy FS-iA4B, FS-iA6B, FS-iA10 receivers all provide 8channels if the tx is sending them. (FS-i6 and FS-i10 transmitters). Use setting rx-setup/ppm to enable.
-
-
 
 ## Serial Receivers
 
@@ -69,19 +67,19 @@ http://www.futaba-rc.com/systems/futk8100-8j/
 #### OpenTX S.BUS configuration
 
 If using OpenTX set the transmitter module to D16 mode and ALSO select CH1-16 on the transmitter before binding to allow reception
-of all 16 channels. 
+of all 16 channels.
 
 OpenTX 2.09, which is shipped on some Taranis X9D Plus transmitters, has a bug - [issue:1701](https://github.com/opentx/opentx/issues/1701).
 The bug prevents use of all 16 channels.  Upgrade to the latest OpenTX version to allow correct reception of all 16 channels,
 without the fix you are limited to 8 channels regardless of the CH1-16/D16 settings.
 
-### SRXL (formerly XBUS) 
+### SRXL (formerly XBUS)
 
 (Serial Receiver Link Protocol)
-SRXL is an open data transfer protocol which allows to transport control data from a rc receiver to another device like a flybarless system 
-by only using one single line. This protocol has been established by SRXL.org based on the idea to create a freely available and unified protocol 
-that manufacturers can easily implement to their receivers and devices that process receiver data. The protocol does not describe an exact definition of 
-how the data must be processed. It only describes a framework in which receiver data can be packed. Each manufacturer can have his own ID, which must be 
+SRXL is an open data transfer protocol which allows to transport control data from a rc receiver to another device like a flybarless system
+by only using one single line. This protocol has been established by SRXL.org based on the idea to create a freely available and unified protocol
+that manufacturers can easily implement to their receivers and devices that process receiver data. The protocol does not describe an exact definition of
+how the data must be processed. It only describes a framework in which receiver data can be packed. Each manufacturer can have his own ID, which must be
 attached to the beginning of each data set, so that the device using this data can correctly identify and process the payload of the dataset.
 
 Supported receivers:
@@ -93,7 +91,7 @@ All receivers with SRXL (also FLEXX receivers)
 All receiver with SUMD support
 
 #### Spektrum:
-AR7700 / AR9020 receiver 
+AR7700 / AR9020 receiver
 
 #### JR:
 JR X-BUS
@@ -151,9 +149,9 @@ These receivers are reported working (all gives 10 channels serial):
 - FlySky/Turnigy FS-iA10B 10-Channel Receiver (http://www.flysky-cn.com/products_detail/productId=52.html)
 
 #### Combine flysky ibus telemetry and serial rx on the same FC serial port
-  
+
   Connect Flysky FS-iA6B receiver like this:
-```   
+```
     +---------+
     | FS-iA6B |
     |         |
@@ -164,11 +162,11 @@ These receivers are reported working (all gives 10 channels serial):
 ```
 
 Use a diode with cathode to receiver serial rx output (for example 1N4148),
-the anode is connected to the FC serial _TX_ pin, and also via a 
+the anode is connected to the FC serial _TX_ pin, and also via a
 resistor (10KOhm) to the receiver ibus sensor port.
 
 Enable with cli:
-```  
+```
     serial 1 1088 115200 57600 115200 115200
     feature RX_SERIAL
     set serialrx_provider = IBUS
@@ -177,7 +175,7 @@ Enable with cli:
 ## MultiWii serial protocol (MSP)
 
 Allows you to use MSP commands as the RC input.  Only 8 channel support to maintain compatibility with MSP.
- 
+
 ## Configuration
 
 There are 3 features that control receiver mode:
@@ -209,13 +207,13 @@ Signal loss can be detected when:
 
 The `rxfail` cli command is used to configure per-channel rx-loss behaviour.
 You can use the `rxfail` command to change this behaviour.
-A flight channel can either be AUTOMATIC or HOLD, an AUX channel can either be SET or HOLD.  
+A flight channel can either be AUTOMATIC or HOLD, an AUX channel can either be SET or HOLD.
 
 * AUTOMATIC - Flight channels are set to safe values (low throttle, mid position for yaw/pitch/roll).
 * HOLD - Channel holds the last value.
-* SET - Channel is set to a specific configured value. 
+* SET - Channel is set to a specific configured value.
 
-The default mode is AUTOMATIC for flight channels and HOLD for AUX channels. 
+The default mode is AUTOMATIC for flight channels and HOLD for AUX channels.
 
 The rxfail command can be used in conjunction with mode ranges to trigger various actions.
 
@@ -250,11 +248,11 @@ WARNING: Always make sure you test the behavior is as expected after configuring
 
 #### `rx_min_usec`
 
-The lowest channel value considered valid.  e.g. PWM/PPM pulse length 
+The lowest channel value considered valid.  e.g. PWM/PPM pulse length
 
 #### `rx_max_usec`
 
-The highest channel value considered valid.  e.g. PWM/PPM pulse length 
+The highest channel value considered valid.  e.g. PWM/PPM pulse length
 
 ### Serial RX
 
@@ -302,7 +300,7 @@ Set failsafe on the throttle channel in the receiver settings (via transmitter m
 This is the prefered way, since this is *much faster* detected by the FC then a channel that sends no pulses (OFF).
 
 __NOTE:__
-One or more control channels may be set to OFF to signal a failsafe condition to the FC, all other channels *must* be set to either HOLD or OFF. 
+One or more control channels may be set to OFF to signal a failsafe condition to the FC, all other channels *must* be set to either HOLD or OFF.
 Do __NOT USE__ the mode indicated with FAILSAFE instead, as this combination is NOT handled correctly by the FC.
 
 ## Receiver Channel Range Configuration.
@@ -335,7 +333,7 @@ save
 ```
 
 Now reboot your FC, connect the configurator, go to the `Receiver` tab move sticks on your transmitter and note min and
-max values of first 4 channels. Take caution as you can accidentally arm your craft. Best way is to move one channel at 
+max values of first 4 channels. Take caution as you can accidentally arm your craft. Best way is to move one channel at
 a time.
 
 Go to CLI and set the min and max values with the following command:

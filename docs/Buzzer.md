@@ -2,13 +2,13 @@
 
 Cleanflight supports a buzzer which is used for the following purposes:
 
- * Low and critical battery alarms (when battery monitoring enabled)
- * Arm/disarm tones (and warning beeps while armed)
- * Notification of calibration complete status
- * TX-AUX operated beeping - useful for locating your aircraft after a crash
- * Failsafe status
- * Flight mode change
- * Rate profile change (via TX-AUX switch)
+* Low and critical battery alarms (when battery monitoring enabled)
+* Arm/disarm tones (and warning beeps while armed)
+* Notification of calibration complete status
+* TX-AUX operated beeping - useful for locating your aircraft after a crash
+* Failsafe status
+* Flight mode change
+* Rate profile change (via TX-AUX switch)
 
 If the arm/disarm is via the control stick, holding the stick in the disarm position will sound a repeating tone.  This can be used as a lost-model locator.
 
@@ -33,16 +33,15 @@ Sequences available in Cleanflight v1.9 and above are :
     4    ARMING                30, 5, 5, 5		Arming the board
     5    ARMING_GPS_FIX        5, 5, 15, 5, 5, 5, 15, 30	Arming and GPS has fix
     6    BAT_CRIT_LOW          50, 2		Battery is critically low (repeats)
-    7    BAT_LOW               25, 50		Battery is getting low (repeats) 
+    7    BAT_LOW               25, 50		Battery is getting low (repeats)
     8    NULL                  multi beeps		GPS status (sat count)
     9    RX_SET                10, 10		RX is set (when aux channel is set for beep or beep sequence how many satellites has found if GPS enabled)
     10   ACC_CALIBRATION       5, 5, 5, 5		ACC inflight calibration completed
     11   ACC_CALIBRATION_FAIL  20, 15, 35, 5	ACC inflight calibration failed
-    12   READY_BEEP            4, 5, 4, 5, 8, 5, 15, 5, 8, 5, 4, 5, 4, 5	GPS locked and copter ready   
+    12   READY_BEEP            4, 5, 4, 5, 8, 5, 15, 5, 8, 5, 4, 5, 4, 5	GPS locked and copter ready
     13   NULL                  multi beeps		Variable # of beeps (confirmation, GPS sat count, etc)
     14   DISARM_REPEAT         0, 100, 10		Stick held in disarm position (after pause)
     15   ARMED                 0, 245, 10, 5	Board is armed (after pause ; repeats until board is disarmed or throttle is increased)
-
 
 ## Types of buzzer supported
 
@@ -64,7 +63,6 @@ Examples of a known-working buzzers.
 ### Naze32
 
 Connect a supported buzzer directly to the BUZZ pins. Observe polarity. Also if you are working with flight controller outside of a craft, on a bench for example, you need to supply 5 volts and ground to one of the ESC connections or the buzzer will not function.
-
 
 ### CC3D
 
