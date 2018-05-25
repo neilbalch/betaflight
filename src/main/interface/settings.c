@@ -115,7 +115,7 @@ const char * const lookupTableGyroHardware[] = {
 #if defined(USE_SENSOR_NAMES) || defined(USE_BARO)
 // sync with baroSensor_e
 const char * const lookupTableBaroHardware[] = {
-    "AUTO", "NONE", "BMP085", "MS5611", "BMP280", "LPS"
+    "AUTO", "NONE", "BMP085", "MS5611", "BMP280", "LPS", "QMP6988"
 };
 #endif
 #if defined(USE_SENSOR_NAMES) || defined(USE_MAG)
@@ -447,7 +447,8 @@ const clivalue_t valueTable[] = {
     { "gyro_lma_depth",             VAR_UINT8  | MASTER_VALUE, .config.minmax = {0, 11}, PG_GYRO_CONFIG, offsetof(gyroConfig_t, gyro_lma_depth)},
     { "gyro_lma_weight",            VAR_UINT8  | MASTER_VALUE, .config.minmax = {0, 100}, PG_GYRO_CONFIG, offsetof(gyroConfig_t, gyro_lma_weight)},
 
-    { "moron_threshold",            VAR_UINT8  | MASTER_VALUE, .config.minmax = { 0,  200 }, PG_GYRO_CONFIG, offsetof(gyroConfig_t, gyroMovementCalibrationThreshold) },
+    { "gyro_calib_duration",        VAR_UINT16 | MASTER_VALUE, .config.minmax = { 50,  3000 }, PG_GYRO_CONFIG, offsetof(gyroConfig_t, gyroCalibrationDuration) },
+    { "gyro_calib_noise_limit",     VAR_UINT8  | MASTER_VALUE, .config.minmax = { 0,  200 }, PG_GYRO_CONFIG, offsetof(gyroConfig_t, gyroMovementCalibrationThreshold) },
     { "gyro_offset_yaw",            VAR_INT16  | MASTER_VALUE, .config.minmax = { -1000, 1000 }, PG_GYRO_CONFIG, offsetof(gyroConfig_t, gyro_offset_yaw) },
 #ifdef USE_GYRO_OVERFLOW_CHECK
     { "gyro_overflow_detect",       VAR_UINT8  | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_GYRO_OVERFLOW_CHECK }, PG_GYRO_CONFIG, offsetof(gyroConfig_t, checkOverflow) },
@@ -737,7 +738,7 @@ const clivalue_t valueTable[] = {
     { "anti_gravity_threshold",     VAR_UINT16 | PROFILE_VALUE, .config.minmax = { 20, 1000 }, PG_PID_PROFILE, offsetof(pidProfile_t, itermThrottleThreshold) },
     { "anti_gravity_gain",          VAR_UINT16 | PROFILE_VALUE, .config.minmax = { 1000, 30000 }, PG_PID_PROFILE, offsetof(pidProfile_t, itermAcceleratorGain) },
     { "setpoint_relax_ratio",       VAR_UINT8  | PROFILE_VALUE, .config.minmax = { 0, 100 }, PG_PID_PROFILE, offsetof(pidProfile_t, setpointRelaxRatio) },
-    { "dterm_setpoint_weight",      VAR_UINT8  | PROFILE_VALUE, .config.minmax = { 0, 254 }, PG_PID_PROFILE, offsetof(pidProfile_t, dtermSetpointWeight) },
+    { "dterm_setpoint_weight",      VAR_UINT16 | PROFILE_VALUE, .config.minmax = { 0, 2000 }, PG_PID_PROFILE, offsetof(pidProfile_t, dtermSetpointWeight) },
     { "acc_limit_yaw",              VAR_UINT16 | PROFILE_VALUE, .config.minmax = { 0, 500 }, PG_PID_PROFILE, offsetof(pidProfile_t, yawRateAccelLimit) },
     { "acc_limit",                  VAR_UINT16 | PROFILE_VALUE, .config.minmax = { 0, 500 }, PG_PID_PROFILE, offsetof(pidProfile_t, rateAccelLimit) },
     { "crash_dthreshold",           VAR_UINT16 | PROFILE_VALUE, .config.minmax = { 0, 2000 }, PG_PID_PROFILE, offsetof(pidProfile_t, crash_dthreshold) },
@@ -947,12 +948,6 @@ const clivalue_t valueTable[] = {
 #ifdef USE_MSP_DISPLAYPORT
     { "displayport_msp_col_adjust", VAR_INT8    | MASTER_VALUE, .config.minmax = { -6, 0 }, PG_DISPLAY_PORT_MSP_CONFIG, offsetof(displayPortProfile_t, colAdjust) },
     { "displayport_msp_row_adjust", VAR_INT8    | MASTER_VALUE, .config.minmax = { -3, 0 }, PG_DISPLAY_PORT_MSP_CONFIG, offsetof(displayPortProfile_t, rowAdjust) },
-#endif
-
-// PG_DISPLAY_PORT_CRSF_CONFIG
-#if defined(USE_CRSF_CMS_TELEMETRY)
-    { "displayport_crsf_col_adjust", VAR_INT8    | MASTER_VALUE, .config.minmax = { -8, 0 }, PG_DISPLAY_PORT_CRSF_CONFIG, offsetof(displayPortProfile_t, colAdjust) },
-    { "displayport_crsf_row_adjust", VAR_INT8    | MASTER_VALUE, .config.minmax = { -3, 0 }, PG_DISPLAY_PORT_CRSF_CONFIG, offsetof(displayPortProfile_t, rowAdjust) },
 #endif
 
 // PG_DISPLAY_PORT_MSP_CONFIG

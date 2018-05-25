@@ -258,7 +258,7 @@ void spiPreInit(void)
 #ifdef FLASH_CS_PIN
     spiPreInitCs(IO_TAG(FLASH_CS_PIN));
 #endif
-#if defined(USE_RX_SPI) && !defined(USE_RX_SOFTSPI)
+#if defined(USE_RX_SPI)
     spiPreInitCs(IO_TAG(RX_NSS_PIN));
 #endif
 }
@@ -275,7 +275,7 @@ void init(void)
 #endif
 
 #ifdef USE_FAST_RAM
-    /* Load FAST_RAM_INITIALIZED variable intializers into FAST RAM */
+    /* Load FAST_RAM variable intializers into DTCM RAM */
     extern uint8_t _sfastram_data;
     extern uint8_t _efastram_data;
     extern uint8_t _sfastram_idata;
